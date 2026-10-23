@@ -89,7 +89,7 @@ erDiagram
 
 ## Physical schema
 
-`database/schema.sql` creates the `examination_management` database and InnoDB tables, primary/foreign keys, unique constraints, indexes, and MySQL 8.0.16+ `CHECK` constraints for positive credits/capacity and valid slot ranges. `database/seed.sql` inserts sample records. `database/queries.sql` demonstrates joins, aggregates, capacity/slot searches, constraints, and data changes.
+`database/schema.sql` creates the `examination_management` database and InnoDB tables, primary/foreign keys, unique constraints, indexes, and MySQL 8.0.16+ `CHECK` constraints for positive credits/capacity and valid slot ranges. `database/seed.sql` inserts starter records. `database/seed-large.sql` adds moderate demonstration data: 80 students, 12 courses, 20 sections, 240 enrollments, 8 invigilators, 6 rooms, 4 time slots, 8 exams, and 160 student-exam assignments. Together with the starter seed, the dashboard preview shows 84 students, 15 courses, 23 sections, and 10 exams. Rerunning the bulk seed resets only its reserved generated IDs (and generated student email range) before recreating the sample rows, so it can also reduce records created by the earlier larger version without deleting starter seed rows. `database/queries.sql` demonstrates joins, aggregates, capacity/slot searches, constraints, and data changes.
 
 The schema deliberately restricts deleting departments, courses, invigilators, rooms, and time slots while they are referenced. Deleting a student or section cascades to its enrollments; deleting a student or exam cascades to its `takes` rows.
 
@@ -115,6 +115,7 @@ The schema deliberately restricts deleting departments, courses, invigilators, r
    ```powershell
    cmd.exe /c "mysql -u root -p < database\schema.sql"
    cmd.exe /c "mysql -u root -p examination_management < database\seed.sql"
+   cmd.exe /c "mysql -u root -p examination_management < database\seed-large.sql"
    ```
 
    Install MySQL Community Server 8.0 (8.0.16 or later) with the Windows MSI if it is not installed, start the MySQL80 service, and add its `bin` directory to PATH. In PowerShell, `cmd.exe /c` is used for SQL file input redirection because PowerShell does not support `< file` redirection.

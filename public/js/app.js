@@ -280,7 +280,6 @@ async function loadDashboard() {
           ${quickAction('↗', 'Manage enrollments', 'Connect students to sections', 'relationships')}
         </div></div>
       </div>`;
-    $('#dashboard-view').querySelectorAll('[data-go]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.go)));
   } catch (error) {
     showNotice(`Dashboard could not load: ${error.message}`, true);
   }
@@ -371,6 +370,10 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#schedule-search').addEventListener('input', debounce(loadSchedule, 250));
   $('#enrollment-form').addEventListener('submit', (event) => submitRelationship(event, '/enrollments'));
   $('#exam-assignment-form').addEventListener('submit', (event) => submitRelationship(event, '/exam-assignments'));
+  $('#dashboard-view').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-go]');
+    if (button) setView(button.dataset.go);
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && $('#record-dialog').open) $('#record-dialog').close();
   });

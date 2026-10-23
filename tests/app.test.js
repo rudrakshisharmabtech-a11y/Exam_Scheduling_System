@@ -75,7 +75,22 @@ test('health endpoint confirms database connectivity', async () => {
 test('frontend entry page is served from the application', async () => {
   const response = await fetch(baseUrl);
   assert.equal(response.status, 200);
-  assert.match(await response.text(), /Examination Management/);
+  const html = await response.text();
+  assert.match(html, /Examination Management/);
+  assert.match(html, /href="css\/style\.css"/);
+  assert.match(html, /Upcoming exam schedule/);
+  assert.match(html, /Register a student/);
+  assert.match(html, /<div class="stat-number">84<\/div>/);
+  assert.match(html, /<div class="stat-number">15<\/div>/);
+  assert.match(html, /<div class="stat-number">23<\/div>/);
+  assert.match(html, /<div class="stat-number">10<\/div>/);
+  assert.match(html, /Dr\. Neha Verma/);
+});
+
+test('linked stylesheet is served with the app interface styles', async () => {
+  const response = await fetch(`${baseUrl}/css/style.css?v=2`);
+  assert.equal(response.status, 200);
+  assert.match(await response.text(), /\.page-heading/);
 });
 
 test('department listing returns records from the database adapter', async () => {

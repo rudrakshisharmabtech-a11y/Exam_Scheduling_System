@@ -3,64 +3,147 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#101a2b">
+    <meta name="theme-color" content="#111a32">
+    <meta name="description" content="Manage courses, students, enrollments, and examination schedules.">
     <title>ExamDesk | Examination Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
-        <a class="brand" href="/" aria-label="ExamDesk home">
-          <span class="brand-mark">E</span>
-          <span>exam<span class="brand-light">desk</span></span>
-        </a>
-        <p class="nav-label">WORKSPACE</p>
-        <nav id="main-nav" aria-label="Main navigation"></nav>
-        <div class="sidebar-bottom">
-          <div class="connection-dot" id="connection-dot"></div>
-          <div><strong id="connection-label">Connecting</strong><small>MySQL database</small></div>
+      <header class="site-header">
+        <div class="header-top">
+          <a class="brand" href="/" aria-label="ExamDesk home">
+            <span class="brand-mark">E</span>
+            <span class="brand-copy"><strong>ExamDesk</strong><small>Examination management</small></span>
+          </a>
+          <div class="header-meta">
+            <span class="today-label" id="today-label"></span>
+            <span class="connection-status">
+              <span class="connection-dot" id="connection-dot"></span>
+              <span><strong id="connection-label">Connecting</strong><small>MySQL database</small></span>
+            </span>
+          </div>
         </div>
-      </aside>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation"></nav>
+      </header>
+
       <main class="main-content">
-        <header class="topbar">
-          <div>
+        <section class="page-heading">
+          <div class="page-heading-copy">
             <p class="eyebrow">ACADEMIC OPERATIONS</p>
             <h1 id="page-title">Overview</h1>
+            <p class="page-subtitle">Manage academic records and keep examinations on schedule.</p>
           </div>
-          <div class="topbar-right">
-            <span class="today-label" id="today-label"></span>
-            <span class="avatar">AD</span>
+          <div class="hero-art" aria-hidden="true">
+            <span class="hero-orbit hero-orbit-one"></span>
+            <span class="hero-orbit hero-orbit-two"></span>
+            <span class="hero-calendar">
+              <span class="calendar-top"></span>
+              <span class="calendar-date">EXAM<br>PLAN</span>
+              <span class="calendar-lines"><i></i><i></i><i></i></span>
+            </span>
+            <span class="hero-spark hero-spark-one">✦</span>
+            <span class="hero-spark hero-spark-two">✧</span>
           </div>
-        </header>
+        </section>
         <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
-        <section id="dashboard-view"></section>
-        <section id="records-view" hidden>
+
+        <section id="dashboard-view" aria-label="Dashboard overview">
+          <div class="overview-intro">
+            <div>
+              <p class="eyebrow">YOUR UNIVERSITY AT A GLANCE</p>
+              <h2>Academic overview</h2>
+              <p>Moderate sample dataset for the project demo. Live database values load when the server is connected.</p>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card stat-purple">
+              <div class="stat-top"><span class="stat-label">Total students</span><span class="stat-icon purple">♙</span></div>
+              <div class="stat-number">84</div><div class="stat-note">Registered in the system</div>
+            </article>
+            <article class="stat-card stat-cyan">
+              <div class="stat-top"><span class="stat-label">Active courses</span><span class="stat-icon cyan">▤</span></div>
+              <div class="stat-number">15</div><div class="stat-note">Across all departments</div>
+            </article>
+            <article class="stat-card stat-orange">
+              <div class="stat-top"><span class="stat-label">Course sections</span><span class="stat-icon orange">▦</span></div>
+              <div class="stat-number">23</div><div class="stat-note">Available for enrollment</div>
+            </article>
+            <article class="stat-card stat-green">
+              <div class="stat-top"><span class="stat-label">Scheduled exams</span><span class="stat-icon green">▣</span></div>
+              <div class="stat-number">10</div><div class="stat-note">With room and invigilator</div>
+            </article>
+          </div>
+          <div class="dashboard-grid">
+            <div class="panel">
+              <div class="panel-header">
+                <div><h3>Upcoming exam schedule</h3><p>Exam times, rooms and assigned invigilators</p></div>
+                <button class="text-button" type="button" data-go="schedule">View schedule →</button>
+              </div>
+              <div class="table-scroll">
+                <table class="mini-table">
+                  <thead><tr><th>Exam</th><th>Date</th><th>Time</th><th>Room</th><th>Invigilator</th></tr></thead>
+                  <tbody>
+                    <tr><td><span class="badge">EX-1</span></td><td>Nov 10, 2026</td><td>09:00</td><td>A-101</td><td>Dr. Neha Verma</td></tr>
+                    <tr><td><span class="badge">EX-2</span></td><td>Nov 12, 2026</td><td>13:00</td><td>B-204</td><td>Prof. Arjun Mehta</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><div><h3>Quick actions</h3><p>Jump to a workspace</p></div></div>
+              <div class="quick-list">
+                <button class="quick-item" type="button" data-go="students"><span class="quick-icon">♙</span><span><strong>Register a student</strong><small>Add a student record</small></span></button>
+                <button class="quick-item" type="button" data-go="courses"><span class="quick-icon">▤</span><span><strong>Create a course</strong><small>Set up a new course</small></span></button>
+                <button class="quick-item" type="button" data-go="exams"><span class="quick-icon">▣</span><span><strong>Schedule an exam</strong><small>Assign room and invigilator</small></span></button>
+                <button class="quick-item" type="button" data-go="relationships"><span class="quick-icon">↗</span><span><strong>Manage enrollments</strong><small>Connect students to sections</small></span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="records-view" aria-label="Manage records" hidden>
           <div class="section-heading">
             <div><p class="eyebrow">MANAGE DATA</p><h2 id="records-title"></h2></div>
-            <button id="add-record" class="button button-primary">＋ <span>Add record</span></button>
+            <button id="add-record" class="button button-primary" type="button"><span aria-hidden="true">+</span> Add record</button>
           </div>
           <div class="toolbar">
-            <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search records..." autocomplete="off"></label>
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="search-input" type="search" placeholder="Search records..." autocomplete="off">
+            </label>
             <span class="record-count" id="record-count"></span>
           </div>
-          <div class="table-card"><div class="table-scroll"><table><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div></div>
+          <div class="table-card">
+            <div class="table-scroll">
+              <table>
+                <thead id="table-head"></thead>
+                <tbody id="table-body"></tbody>
+              </table>
+            </div>
+          </div>
           <p class="empty-state" id="empty-state" hidden>No records found. Add your first record to get started.</p>
         </section>
-        <section id="relationships-view" hidden>
-          <div class="section-heading"><div><p class="eyebrow">STUDENT REGISTRATION</p><h2>Enrollments & exam assignments</h2></div></div>
+
+        <section id="relationships-view" aria-label="Student enrollments and exam assignments" hidden>
+          <div class="section-heading">
+            <div><p class="eyebrow">STUDENT REGISTRATION</p><h2>Enrollments &amp; exam assignments</h2></div>
+          </div>
           <div class="relationship-grid">
             <form id="enrollment-form" class="form-card">
-              <span class="card-icon violet">↗</span><h3>Enroll in a section</h3>
+              <span class="card-icon violet" aria-hidden="true">↗</span>
+              <h3>Enroll in a section</h3>
               <p>Connect a student to a course section.</p>
               <label>Student<select name="student_id" required></select></label>
               <label>Section<select name="sec_id" required></select></label>
               <button class="button button-primary" type="submit">Enroll student</button>
             </form>
             <form id="exam-assignment-form" class="form-card">
-              <span class="card-icon amber">▣</span><h3>Assign to an exam</h3>
+              <span class="card-icon amber" aria-hidden="true">▣</span>
+              <h3>Assign to an exam</h3>
               <p>Room capacity is checked before assignment.</p>
               <label>Student<select name="student_id" required></select></label>
               <label>Exam<select name="exam_id" required></select></label>
@@ -68,20 +151,43 @@
             </form>
           </div>
         </section>
-        <section id="schedule-view" hidden>
-          <div class="section-heading"><div><p class="eyebrow">EXAM OPERATIONS</p><h2>Examination schedule</h2></div></div>
-          <div class="toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="schedule-search" type="search" placeholder="Search room, invigilator or date..."></label></div>
-          <div class="table-card"><div class="table-scroll"><table><thead id="schedule-head"></thead><tbody id="schedule-body"></tbody></table></div></div>
+
+        <section id="schedule-view" aria-label="Examination schedule" hidden>
+          <div class="section-heading">
+            <div><p class="eyebrow">EXAM OPERATIONS</p><h2>Examination schedule</h2></div>
+          </div>
+          <div class="toolbar">
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="schedule-search" type="search" placeholder="Search room, invigilator or date...">
+            </label>
+          </div>
+          <div class="table-card">
+            <div class="table-scroll">
+              <table>
+                <thead id="schedule-head"></thead>
+                <tbody id="schedule-body"></tbody>
+              </table>
+            </div>
+          </div>
         </section>
       </main>
     </div>
+
     <dialog id="record-dialog">
       <form id="record-form" method="dialog">
-        <div class="dialog-heading"><div><p class="eyebrow">RECORD DETAILS</p><h2 id="dialog-title">Add record</h2></div><button type="button" class="icon-button" id="close-dialog" aria-label="Close">×</button></div>
+        <div class="dialog-heading">
+          <div><p class="eyebrow">RECORD DETAILS</p><h2 id="dialog-title">Add record</h2></div>
+          <button type="button" class="icon-button" id="close-dialog" aria-label="Close">×</button>
+        </div>
         <div id="form-fields" class="form-fields"></div>
-        <div class="dialog-actions"><button type="button" class="button button-secondary" id="cancel-dialog">Cancel</button><button type="submit" class="button button-primary">Save record</button></div>
+        <div class="dialog-actions">
+          <button type="button" class="button button-secondary" id="cancel-dialog">Cancel</button>
+          <button type="submit" class="button button-primary">Save record</button>
+        </div>
       </form>
     </dialog>
+
     <script src="/js/app.js" defer></script>
   </body>
 </html>
