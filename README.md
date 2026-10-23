@@ -177,18 +177,14 @@ Successful creates return `201`, reads/updates return `200`, deletes return `204
 
 `render.yaml` describes the Node web service, but Render does not provide a persistent MySQL database in the web service. Provision a managed MySQL 8 database from a provider that permits your web service to connect (for example, a MySQL-compatible managed database), then configure the Render service variables `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME`. Apply `database/schema.sql` and `database/seed.sql` to that database before opening the deployed site. Use TLS database options if required by the selected provider; do not commit credentials. Confirm `/api/health` reports `database: connected`.
 
-No repository has been pushed and no website deployed from this workspace. GitHub CLI is not installed here; after creating a GitHub repository, use:
+This project has a local Git commit, but has not been pushed and no website has been deployed from this workspace. GitHub CLI is not installed here. Create an empty public repository named `examination-management-system` on GitHub, then connect and push this existing local repository:
 
 ```powershell
-git init
-git add .
-git commit -m "Build examination management system"
-git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/examination-management-system.git
 git push -u origin main
 ```
 
-Replace the remote with the actual repository URL. Git credentials are handled by Git Credential Manager; never put a token in a remote URL.
+Replace the placeholder with the actual repository URL. If you already have an `origin` remote, update it with `git remote set-url origin <actual-repository-url>`. Git credentials are handled by Git Credential Manager; never put a token in a remote URL.
 
 ## Screenshots
 
