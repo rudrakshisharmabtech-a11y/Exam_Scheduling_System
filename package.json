@@ -1,0 +1,21 @@
+{
+  "name": "examination-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A beginner-friendly examination management system backed by MySQL.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "test:db": "node --test tests/database.integration.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  }
+}

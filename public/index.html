@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a2b">
+    <title>ExamDesk | Examination Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="ExamDesk home">
+          <span class="brand-mark">E</span>
+          <span>exam<span class="brand-light">desk</span></span>
+        </a>
+        <p class="nav-label">WORKSPACE</p>
+        <nav id="main-nav" aria-label="Main navigation"></nav>
+        <div class="sidebar-bottom">
+          <div class="connection-dot" id="connection-dot"></div>
+          <div><strong id="connection-label">Connecting</strong><small>MySQL database</small></div>
+        </div>
+      </aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">ACADEMIC OPERATIONS</p>
+            <h1 id="page-title">Overview</h1>
+          </div>
+          <div class="topbar-right">
+            <span class="today-label" id="today-label"></span>
+            <span class="avatar">AD</span>
+          </div>
+        </header>
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+        <section id="dashboard-view"></section>
+        <section id="records-view" hidden>
+          <div class="section-heading">
+            <div><p class="eyebrow">MANAGE DATA</p><h2 id="records-title"></h2></div>
+            <button id="add-record" class="button button-primary">＋ <span>Add record</span></button>
+          </div>
+          <div class="toolbar">
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search records..." autocomplete="off"></label>
+            <span class="record-count" id="record-count"></span>
+          </div>
+          <div class="table-card"><div class="table-scroll"><table><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div></div>
+          <p class="empty-state" id="empty-state" hidden>No records found. Add your first record to get started.</p>
+        </section>
+        <section id="relationships-view" hidden>
+          <div class="section-heading"><div><p class="eyebrow">STUDENT REGISTRATION</p><h2>Enrollments & exam assignments</h2></div></div>
+          <div class="relationship-grid">
+            <form id="enrollment-form" class="form-card">
+              <span class="card-icon violet">↗</span><h3>Enroll in a section</h3>
+              <p>Connect a student to a course section.</p>
+              <label>Student<select name="student_id" required></select></label>
+              <label>Section<select name="sec_id" required></select></label>
+              <button class="button button-primary" type="submit">Enroll student</button>
+            </form>
+            <form id="exam-assignment-form" class="form-card">
+              <span class="card-icon amber">▣</span><h3>Assign to an exam</h3>
+              <p>Room capacity is checked before assignment.</p>
+              <label>Student<select name="student_id" required></select></label>
+              <label>Exam<select name="exam_id" required></select></label>
+              <button class="button button-primary" type="submit">Assign student</button>
+            </form>
+          </div>
+        </section>
+        <section id="schedule-view" hidden>
+          <div class="section-heading"><div><p class="eyebrow">EXAM OPERATIONS</p><h2>Examination schedule</h2></div></div>
+          <div class="toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="schedule-search" type="search" placeholder="Search room, invigilator or date..."></label></div>
+          <div class="table-card"><div class="table-scroll"><table><thead id="schedule-head"></thead><tbody id="schedule-body"></tbody></table></div></div>
+        </section>
+      </main>
+    </div>
+    <dialog id="record-dialog">
+      <form id="record-form" method="dialog">
+        <div class="dialog-heading"><div><p class="eyebrow">RECORD DETAILS</p><h2 id="dialog-title">Add record</h2></div><button type="button" class="icon-button" id="close-dialog" aria-label="Close">×</button></div>
+        <div id="form-fields" class="form-fields"></div>
+        <div class="dialog-actions"><button type="button" class="button button-secondary" id="cancel-dialog">Cancel</button><button type="submit" class="button button-primary">Save record</button></div>
+      </form>
+    </dialog>
+    <script src="/js/app.js" defer></script>
+  </body>
+</html>
